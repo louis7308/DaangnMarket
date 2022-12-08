@@ -17,4 +17,13 @@ class PostQueryConverterImpl : PostQueryConverter {
         isSuggestion = dto.isSuggestion,
         views = views
     )
+
+    override fun toSummaryResponse(dto: PostQueryDto): PostSummeryQueryResponse = PostSummeryQueryResponse(
+        idx = dto.idx,
+        title = dto.title,
+        content = dto.content,
+        price = dto.price,
+        isSuggestion = dto.isSuggestion,
+        views = dto.views
+    )
 }
