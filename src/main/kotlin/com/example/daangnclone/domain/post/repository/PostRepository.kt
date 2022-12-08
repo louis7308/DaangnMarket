@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PostRepository : JpaRepository<Post, Long> {
     fun findBy(pageable : Pageable) : Page<Post>
+
 }
