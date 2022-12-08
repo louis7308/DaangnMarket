@@ -26,4 +26,9 @@ class PostQueryConverterImpl : PostQueryConverter {
         isSuggestion = dto.isSuggestion,
         views = dto.views
     )
+
+    override fun toPageableResponse(list: List<PostSummeryQueryResponse>): PageablePostSummeryQueryResponse = PageablePostSummeryQueryResponse(
+        PageImpl(list)
+    )
+
 }
