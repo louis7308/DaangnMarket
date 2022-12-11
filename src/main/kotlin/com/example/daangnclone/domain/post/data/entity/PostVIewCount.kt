@@ -1,11 +1,15 @@
 package com.example.daangnclone.domain.post.data.entity
 
+import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
-import javax.persistence.Id
 
 @RedisHash("post-view-count")
-data class PostVIewCount(
+data class PostViewCount(
     @Id
     val postIdx: Long,
     var viewCount: Int
-)
+) {
+    fun increaseViewCount() {
+        viewCount += 1
+    }
+}
