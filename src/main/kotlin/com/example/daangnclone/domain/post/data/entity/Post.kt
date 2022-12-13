@@ -8,12 +8,13 @@ import javax.persistence.Id
 
 @Entity
 class Post(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // @Id 기본키 @GeneratedValue 기본키 생성 조건 IDENTITY 생성될 때 마다 1씩 증가
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // @Id 기본키 @GeneratedValue 기본키 생성 조건 IDENTITY 생성될 때 마다 1씩 증가
     val idx: Long,
     val title: String,
     val content: String,
     val price: Long,
     val isSuggestion: Boolean,
-
 ) : BaseTimeEntity() {
+
 }
