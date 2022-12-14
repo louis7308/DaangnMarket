@@ -18,9 +18,12 @@ class PostQueryServiceImpl(
     private val postViewCountRepository: PostViewCountRepository
 ) : PostQueryService {
     override fun findAllPost(pagination: PageRequest): Page<PostQueryDto> =
-        postRepository.findBy(pagination)
-            .map { postConverter.toDto(it) }
-            .map { postQueryConverter.toQueryDto(1, it) }
+        postRepository.findBy(pagination)// 페이징 처리 해서 가져온 데이터 * 데이터가 없어도 빈 배열로 반환 해서 보내줌
+            .map { postConverter.toDto(it) } // PostDto 형태로 변환
+            .map { postViewCountRepository.findById(it.idx) to it} // 게시글 id 에 해당하는 ViewCount 값을 가져온다.
+            .map { (if(it.first.isEmpty) 0 else it.first.get().viewCount) to it.second }
+            .map { postQueryConverter.toQueryDto(it.first, it.second) }
+
     override fun findPostByIndex(idx: Long): PostQueryDto {
         val findById = postRepository.findById(idx)
             .let {
