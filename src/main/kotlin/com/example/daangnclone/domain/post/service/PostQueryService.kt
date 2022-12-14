@@ -6,4 +6,5 @@ import org.springframework.data.domain.PageRequest
 
 interface PostQueryService {
     fun findAllPost(pagination: PageRequest) : Page<PostQueryDto>
+    fun findPostByIndex(idx: Long) : PostQueryDto
 }
